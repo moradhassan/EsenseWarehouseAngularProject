@@ -1,0 +1,19 @@
+<div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Orders Filter</h4>
+
+</div>
+<div class="modal-body">
+    <label class="form-label">Order Status</label>
+
+    <select class="form-select" [(ngModel)]="selectedStatus">
+        <option value="" disabled selected>Select order status</option>
+        <option value="pending">Pending</option>
+        <option value="shipped">Shipped</option>
+        <option value="delivered">Delivered</option>
+    </select>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="onSave()">
+        Save
+    </button>
+</div>

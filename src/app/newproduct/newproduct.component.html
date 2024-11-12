@@ -1,0 +1,108 @@
+<div class="container-fluid py-3">
+    <!-- Alerts Section -->
+    <div class="alerts-container">
+        <div *ngFor="let alert of alerts;">
+            <ngb-alert [type]="alert.type" (closed)="close(alert)" class="alert-animation">
+                {{ alert.message }}
+            </ngb-alert>
+        </div>
+    </div>
+
+    <!-- Form Section -->
+    <div class="row justify-content-center">
+        <div class="col-12">
+            <form [formGroup]="productForm" class="product-form">
+                <h3 class="form-header mb-4">Product Information</h3>
+
+                <div class="row">
+                    <!-- Product Name -->
+                    <div class="col-12 col-md-6 mb-3">
+                        <div class="form-floating">
+                            <input type="text" formControlName="txtProductName" class="form-control" id="productName"
+                                placeholder="Enter product name" required>
+                            <label for="productName">Product Name</label>
+                            <div class="invalid-feedback"
+                                *ngIf="productForm.controls['txtProductName'].touched && productForm.hasError('required', 'txtProductName')">
+                                Please enter a product name.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SKU -->
+                    <div class="col-12 col-md-6 mb-3">
+                        <div class="form-floating">
+                            <input type="text" class="form-control" id="sku" placeholder="Enter SKU"
+                                formControlName="txtSKU" required>
+                            <label for="sku">SKU</label>
+                            <div class="invalid-feedback"
+                                *ngIf="productForm.controls['txtSKU'].touched && productForm.hasError('required', 'txtSKU')">
+                                Please enter product SKU.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Price -->
+                    <div class="col-12 col-md-6 mb-3">
+                        <div class="form-floating">
+                            <input type="number" step="0.01" class="form-control" id="price" placeholder="Enter price"
+                                formControlName="txtPrice" required>
+                            <label for="price">Price</label>
+                            <div class="invalid-feedback"
+                                *ngIf="productForm.controls['txtPrice'].touched && productForm.hasError('required', 'txtPrice')">
+                                Please enter a price.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Stock -->
+                    <div class="col-12 col-md-6 mb-3">
+                        <div class="form-floating">
+                            <input type="number" class="form-control" id="stock" placeholder="Enter stock quantity"
+                                formControlName="txtStock" required>
+                            <label for="stock">Stock</label>
+                            <div class="invalid-feedback"
+                                *ngIf="productForm.controls['txtStock'].touched && productForm.hasError('required', 'txtStock')">
+                                Please enter stock quantity.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Description -->
+                    <div class="col-12 mb-3">
+                        <div class="form-floating">
+                            <textarea class="form-control" id="description" placeholder="Enter product description"
+                                formControlName="txtDescription" style="height: 100px"></textarea>
+                            <label for="description">Description</label>
+                        </div>
+                    </div>
+
+                    <!-- Image Upload -->
+                    <div class="col-12 mb-3 text-center">
+                        <div class="image-upload-container">
+                            <label class="btn btn-primary btn-upload" for="ProductImg">
+                                <i class="bi bi-camera-fill"></i> Upload Product Image
+                            </label>
+                            <input type="file" id="ProductImg" (change)="onFileSelect($event)" style="display: none;">
+                            <p class="image-upload-text" *ngIf="!productPictureUrl">No image selected</p>
+                        </div>
+                        <div *ngIf="productPictureUrl" class="image-preview-container">
+                            <img [src]="productPictureUrl" class="img-fluid product-image-preview" alt="Product Image">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="mb-3 d-flex justify-content-center">
+                    <button type="submit" class="btn btn-primary w-75 submit-btn" *ngIf="!isEdited"
+                        (click)="addProduct()">
+                        Add Product
+                    </button>
+                    <button type="submit" class="btn btn-primary w-75 submit-btn" *ngIf="isEdited"
+                        (click)="updateProduct()">
+                        Update Product
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

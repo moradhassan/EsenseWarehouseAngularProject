@@ -1,0 +1,40 @@
+/* Add a little padding inside the form */
+form {
+    width: 80%;
+    height: 80%;
+    margin: 7%;
+
+}
+
+/* Improve visual spacing and alignment */
+.form-label {
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+/* Make the invalid-feedback block look better */
+.invalid-feedback {
+    display: block;
+    color: #dc3545;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+}
+
+/* Make button full width and adjust for mobile */
+.btn {
+    width: 100%;
+    margin-top: 20%;
+}
+
+/* Adjust layout for different screen sizes */
+@media (min-width: 576px) {
+    .form-control {
+        padding: 1rem;
+    }
+}
+
+@media (min-width: 992px) {
+    .form-control {
+        font-size: 1rem;
+    }
+}

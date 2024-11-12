@@ -1,0 +1,64 @@
+<div class="container-fluid py-3">
+
+    <div class="alerts-container">
+        <div *ngFor="let alert of alerts;">
+            <ngb-alert [type]="alert.type" (closed)="close(alert)" class="alert-animation">
+                {{ alert.message }}
+            </ngb-alert>
+        </div>
+    </div>
+
+    <form [formGroup]="warehouseForm" class="p-4 border rounded shadow">
+        <h3 class="mb-4">Add New Warehouse</h3>
+
+        <div class="mb-3">
+            <label class="form-label">Warehouse Manager</label>
+            <input type="text" class="form-control" placeholder="Enter warehouse manager's name"
+                formControlName="txtWarehouseManager" required>
+            <div class="invalid-feedback"
+                *ngIf="warehouseForm.controls['txtWarehouseManager'].touched &&  warehouseForm.hasError('required','txtWarehouseManager')">
+                Please enter the name of manager
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Location</label>
+            <input type="text" class="form-control" placeholder="Enter warehouse location" formControlName="txtLocation"
+                required>
+            <div class="invalid-feedback"
+                *ngIf="warehouseForm.controls['txtLocation'].touched &&  warehouseForm.hasError('required','txtLocation')">
+                Please enter location
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Status</label>
+            <select class="form-select" formControlName="ddlStatus" required>
+                <option value="" disabled selected>Select status</option>
+                <option value="true">Active</option>
+                <option value="false">Inactive</option>
+            </select>
+            <div class="invalid-feedback"
+                *ngIf="warehouseForm.controls['ddlStatus'].touched &&  warehouseForm.hasError('required','ddlStatus')">
+                Please choose a status
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Capacity</label>
+            <input type="number" class="form-control" placeholder="Enter capacity" formControlName="txtCapacity"
+                required>
+            <div class="invalid-feedback"
+                *ngIf="warehouseForm.controls['txtCapacity'].touched &&  warehouseForm.hasError('required','txtCapacity')">
+                Please enter capacity of warehouse
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <button type="submit" class="btn btn-success w-100" (click)="addWarehouse()">Add Warehouse</button>
+        </div>
+
+        <div class="mb-3">
+            <button type="submit" class="btn btn-success w-100" (click)="updateWarehouse()">Update Warehouse</button>
+        </div>
+    </form>

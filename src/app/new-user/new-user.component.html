@@ -1,0 +1,82 @@
+<form class="p-4 border rounded shadow-sm bg-white" [formGroup]="userForm">
+    <h3 class="mb-4 text-center wms">New User</h3>
+
+    <div class="row mb-3">
+        <div class="col-12 col-md-6">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" formControlName="txtName" class="form-control" id="name" placeholder="Enter your name"
+                required>
+            <div class="invalid-feedback"
+                *ngIf="userForm.controls['txtName'].touched && userForm.hasError('required','txtName')">
+                Please enter the user's name.
+            </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+            <label for="username" class="form-label">Username</label>
+            <input type="text" formControlName="txtUserName" class="form-control" id="username"
+                placeholder="Enter a username" required>
+            <div class="invalid-feedback"
+                *ngIf="userForm.controls['txtUserName'].touched && userForm.hasError('required','txtUserName')">
+                Please enter a username.
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-12 col-md-6">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" formControlName="txtEmail" class="form-control" id="email"
+                placeholder="Enter your email" required>
+            <div class="invalid-feedback"
+                *ngIf="userForm.controls['txtEmail'].touched && userForm.hasError('required','txtEmail')">
+                Please enter a valid email.
+            </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" formControlName="txtPassword" class="form-control" id="password"
+                placeholder="Enter a password" required>
+            <div class="invalid-feedback"
+                *ngIf="userForm.controls['txtPassword'].touched && userForm.hasError('required','txtPassword')">
+                Please enter a password.
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-12 col-md-12">
+            <label for="role" class="form-label">Role</label>
+            <select class="form-select" formControlName="ddlRole" id="role" required>
+                <option value="" disabled selected>Select a role</option>
+                <option *ngFor="let role of roles" [value]="role.name">{{ role.name }}</option>
+            </select>
+            <div class="invalid-feedback"
+                *ngIf="userForm.controls['ddlRole'].touched && userForm.hasError('required','ddlRole')">
+                Please select a role.
+            </div>
+        </div>
+
+        <div class="col-12 col-md-12">
+            <label for="warehouse" class="form-label">Warehouse</label>
+            <select class="form-select" id="warehouse" formControlName="ddlWarehouse" required>
+                <option disabled selected>Select a warehouse</option>
+                <option *ngFor="let warehouse of warehouses" [value]="warehouse.warehouseId">
+                    {{ warehouse.location }}
+                </option>
+            </select>
+            <div class="invalid-feedback"
+                *ngIf="userForm.controls['ddlWarehouse'].touched && userForm.hasError('required','ddlWarehouse')">
+                Please select a warehouse.
+            </div>
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <button type="submit" *ngIf="!isEdited" class="btn btn-primary w-100" (click)="AddUser()">Create
+            Account</button>
+        <button type="submit" *ngIf="isEdited" class="btn btn-primary w-100" (click)="onUpdate()">update
+            Account</button>
+    </div>
+</form>

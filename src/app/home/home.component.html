@@ -1,0 +1,37 @@
+<main class="d-flex flex-nowrap">
+    <div class="d-flex flex-column flex-shrink-0 p-3 sidebar">
+        <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+            <svg class="bi pe-none me-2 wms" width="40" height="32">
+                <use xlink:href="#bootstrap" />
+            </svg>
+            <span class="fs-4 wms">WMS</span>
+        </a>
+        <hr>
+        <ul class="nav nav-pills flex-column mb-auto">
+            <li class="nav-item" *ngFor="let menuItem of filteredMenu">
+                <a [routerLink]="menuItem.path" routerLinkActive="active" class="nav-link blacktxt" aria-current="page">
+                    <svg class="bi pe-none me-2" width="16" height="16">
+                        <use xlink:href="#home" />
+                    </svg>
+                    {{menuItem.text}}
+                </a>
+            </li>
+        </ul>
+        <hr>
+        <div class="dropdown">
+            <a class="btn logout-btn" (click)="logout()">Logout</a>
+        </div>
+    </div>
+
+    <div class="b-example-divider"></div>
+
+    <div class="container-fluid vh-100 content-area">
+        <div class="row h-100">
+            <div class="col-12 d-flex justify-content-center mt-4 " style="background-color: #f5f5f5;">
+                <div class="col-md-10 container-div">
+                    <router-outlet></router-outlet>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
