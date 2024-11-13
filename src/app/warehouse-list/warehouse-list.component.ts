@@ -37,7 +37,7 @@ export class WarehouseListComponent implements OnInit {
 
           })
           this.closeAlertAfterDelay()
-          // Reload the products after a successful delete
+         
           this.loadData();
         }
       },

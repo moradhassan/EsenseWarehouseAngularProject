@@ -104,7 +104,7 @@ export class NewWarehouseComponent implements OnInit {
         next: () => {
           this.alerts.push({
             type: 'success',
-            message: "Product Updated Successfully"
+            message: "Warehouse Updated Successfully"
           })
           this.resetForm();
           this.closeAlertAfterDelay();

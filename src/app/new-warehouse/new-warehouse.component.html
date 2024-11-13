@@ -9,7 +9,7 @@
     </div>
 
     <form [formGroup]="warehouseForm" class="p-4 border rounded shadow">
-        <h3 class="mb-4">Add New Warehouse</h3>
+        <h3 class="mb-4">Warehouse</h3>
 
         <div class="mb-3">
             <label class="form-label">Warehouse Manager</label>
@@ -55,10 +55,10 @@
         </div>
 
         <div class="mb-3">
-            <button type="submit" class="btn btn-success w-100" (click)="addWarehouse()">Add Warehouse</button>
+            <button type="submit" *ngIf="!isEdited" class="btn btn-primary w-100" (click)="addWarehouse()">Add Warehouse</button>
         </div>
 
         <div class="mb-3">
-            <button type="submit" class="btn btn-success w-100" (click)="updateWarehouse()">Update Warehouse</button>
+            <button type="submit" *ngIf="isEdited" class="btn btn-primary w-100" (click)="updateWarehouse()">Update Warehouse</button>
         </div>
     </form>
